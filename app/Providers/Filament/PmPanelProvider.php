@@ -33,7 +33,6 @@ class PmPanelProvider extends PanelProvider
             ->id('pm')
             ->path('pm')
             ->login()
-            // ->viteTheme('resources/css/filament/pm/theme.css')
             ->colors([
                 'primary' => Color::Amber,
             ])

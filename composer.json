@@ -3,28 +3,43 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-iconv": "*",
+        "doctrine/dbal": "^4.3",
         "dutchcodingcompany/filament-socialite": "^2.4",
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.3",
         "filament/spatie-laravel-settings-plugin": "^3.3",
         "guava/filament-icon-picker": "^2.3",
+        "guzzlehttp/guzzle": "^7.10",
         "jeffgreco13/filament-breezy": "^2.6",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
-        "owenvoke/blade-fontawesome": "^2.9"
+        "league/oauth2-client": "^2.8",
+        "maatwebsite/excel": "^3.1",
+        "owenvoke/blade-fontawesome": "^2.9",
+        "protonemedia/laravel-verify-new-email": "^1.13",
+        "psr/simple-cache": "^3.0",
+        "pusher/pusher-php-server": "^7.2",
+        "stichoza/google-translate-php": "^5.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "kkomelin/laravel-translatable-string-exporter": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "phpunit/phpunit": "^11.5.3",
+        "spatie/laravel-ignition": "^2.9"
     },
     "autoload": {
         "psr-4": {
