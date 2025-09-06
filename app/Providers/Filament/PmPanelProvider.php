@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
 use DutchCodingCompany\FilamentSocialite\Provider;
+use Filament\Forms\Components\FileUpload;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,7 +20,9 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
 
 class PmPanelProvider extends PanelProvider
 {
@@ -55,29 +58,47 @@ class PmPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->plugin(
+            ->plugins([
                 FilamentSocialitePlugin::make()
                     ->domainAllowList([])
                     ->providers([
-                        // Create a provider 'gitlab' corresponding to the Socialite driver with the same name.
                         Provider::make('google')
                             ->label('Google')
                             ->icon('fab-google')
                             ->color(Color::hex('#BE3030FF'))
                             ->outlined(false)
                             ->visible(fn () => true)
-                            ->stateless(true),
+                            ->stateless(false),
                         Provider::make('github')
                             ->label('Github')
                             ->icon('fab-github')
                             ->color(Color::hex('#2f2a6b'))
                             ->outlined(false)
                             ->visible(fn () => true)
-                            ->stateless(true),
+                            ->stateless(false),
                     ])
                     ->registration(true)
-                    ->userModelClass(\App\Models\User::class)
-            )
+                    ->userModelClass(\App\Models\User::class),
+                BreezyCore::make()
+                    ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->disk('public')->directory('profile-photos'))
+                    ->passwordUpdateRules(
+                        rules: [Password::default()->mixedCase()->uncompromised(3)], // you may pass an array of validation rules as well. (default = ['min:8'])
+                        requiresCurrentPassword: false, // when false, the user can update their password without entering their current password. (default = true)
+                    )
+                    ->enableTwoFactorAuthentication(
+                        force: false, // force the user to enable 2FA before they can use the application (default = false)
+                        // action: CustomTwoFactorPage::class, // optionally, use a custom 2FA page
+                        // authMiddleware: MustTwoFactor::class // optionally, customize 2FA auth middleware or disable it to register manually by setting false
+                    )
+                    ->myProfile(
+                        shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
+                        userMenuLabel: 'My Profile', // Customizes the 'account' link label in the panel User Menu (default = null)
+                        shouldRegisterNavigation: false, // Adds a main navigation item for the My Profile page (default = false)
+                        navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
+                        hasAvatars: true, // Enables the avatar upload form component (default = false)
+                        slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                    ),
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);
