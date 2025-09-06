@@ -60,18 +60,18 @@ class TicketCreated extends Notification implements ShouldQueue
             ->action(__('View details'), route('filament.resources.tickets.share', $this->ticket->code));
     }
 
-    // public function toDatabase(User $notifiable): array
-    // {
-    //     return FilamentNotification::make()
-    //         ->title(__('New ticket created'))
-    //         ->icon('heroicon-o-ticket')
-    //         ->body(fn() => $this->ticket->name)
-    //         ->actions([
-    //             Action::make('view')
-    //                 ->link()
-    //                 ->icon('heroicon-s-eye')
-    //                 ->url(fn() => route('filament.resources.tickets.share', $this->ticket->code)),
-    //         ])
-    //         ->getDatabaseMessage();
-    // }
+    public function toDatabase(User $notifiable): array
+    {
+        return FilamentNotification::make()
+            ->title(__('New ticket created'))
+            ->icon('heroicon-o-ticket')
+            ->body(fn() => $this->ticket->name)
+            ->actions([
+                Action::make('view')
+                    ->link()
+                    ->icon('heroicon-s-eye')
+                    ->url(fn() => route('filament.resources.tickets.share', $this->ticket->code)),
+            ])
+            ->getDatabaseMessage();
+    }
 }

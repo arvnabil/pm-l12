@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->uuid('creation_token')->nullable(); // token used for user creation
+            $table->string('type')->default('db'); // db or oidc
+            $table->string('oidc_username')->nullable(); // preferred username from OIDC
+            $table->string('oidc_sub')->nullable(); // sub from OIDC
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

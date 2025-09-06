@@ -58,23 +58,23 @@ class TicketStatusUpdated extends Notification implements ShouldQueue
             ->action(__('View details'), route('filament.resources.tickets.share', $this->ticket->code));
     }
 
-    // public function toDatabase(User $notifiable): array
-    // {
-    //     return FilamentNotification::make()
-    //         ->title(__('Ticket status updated'))
-    //         ->icon('heroicon-o-ticket')
-    //         ->body(
-    //             fn() => __('Old status: :oldStatus - New status: :newStatus', [
-    //                 'oldStatus' => $this->activity->oldStatus->name,
-    //                 'newStatus' => $this->activity->newStatus->name,
-    //             ])
-    //         )
-    //         ->actions([
-    //             Action::make('view')
-    //                 ->link()
-    //                 ->icon('heroicon-s-eye')
-    //                 ->url(fn() => route('filament.resources.tickets.share', $this->ticket->code)),
-    //         ])
-    //         ->getDatabaseMessage();
-    // }
+    public function toDatabase(User $notifiable): array
+    {
+        return FilamentNotification::make()
+            ->title(__('Ticket status updated'))
+            ->icon('heroicon-o-ticket')
+            ->body(
+                fn() => __('Old status: :oldStatus - New status: :newStatus', [
+                    'oldStatus' => $this->activity->oldStatus->name,
+                    'newStatus' => $this->activity->newStatus->name,
+                ])
+            )
+            ->actions([
+                Action::make('view')
+                    ->link()
+                    ->icon('heroicon-s-eye')
+                    ->url(fn() => route('filament.resources.tickets.share', $this->ticket->code)),
+            ])
+            ->getDatabaseMessage();
+    }
 }

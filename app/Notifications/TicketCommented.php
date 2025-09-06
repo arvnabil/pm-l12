@@ -64,25 +64,25 @@ class TicketCommented extends Notification implements ShouldQueue
             );
     }
 
-    // public function toDatabase(User $notifiable): array
-    // {
-    //     return FilamentNotification::make()
-    //         ->title(
-    //             __(
-    //                 'Ticket :ticket commented',
-    //                 [
-    //                     'ticket' => $this->ticketComment->ticket->name
-    //                 ]
-    //             )
-    //         )
-    //         ->icon('heroicon-o-ticket')
-    //         ->body(fn() => __('by :name', ['name' => $this->ticketComment->user->name]))
-    //         ->actions([
-    //             Action::make('view')
-    //                 ->link()
-    //                 ->icon('heroicon-s-eye')
-    //                 ->url(fn() => route('filament.resources.tickets.share', $this->ticketComment->ticket->code)),
-    //         ])
-    //         ->getDatabaseMessage();
-    // }
+    public function toDatabase(User $notifiable): array
+    {
+        return FilamentNotification::make()
+            ->title(
+                __(
+                    'Ticket :ticket commented',
+                    [
+                        'ticket' => $this->ticketComment->ticket->name
+                    ]
+                )
+            )
+            ->icon('heroicon-o-ticket')
+            ->body(fn() => __('by :name', ['name' => $this->ticketComment->user->name]))
+            ->actions([
+                Action::make('view')
+                    ->link()
+                    ->icon('heroicon-s-eye')
+                    ->url(fn() => route('filament.resources.tickets.share', $this->ticketComment->ticket->code)),
+            ])
+            ->getDatabaseMessage();
+    }
 }
