@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Settings\GeneralSettings;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
@@ -16,6 +17,7 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class ManageGeneralSettings extends SettingsPage
 {
+    use HasPageShield;
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'filament.pages.manage-general-settings';
@@ -93,6 +95,7 @@ class ManageGeneralSettings extends SettingsPage
                                         ->label(__('Default role'))
                                         ->helperText(__('The platform default role (used mainly in OIDC Connect).'))
                                         ->searchable()
+                                        ->relationship('roles', 'name')
                                         // ->options(Role::all()->pluck('name', 'id')->toArray()),
                                 ]),
                         ]),

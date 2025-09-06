@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "ext-iconv": "*",
+        "bezhansalleh/filament-shield": "^3.3",
         "doctrine/dbal": "^4.3",
         "dutchcodingcompany/filament-socialite": "^2.4",
         "filament/filament": "^3.3",

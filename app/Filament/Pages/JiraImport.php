@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Helpers\JiraHelper;
 use App\Jobs\ImportJiraTicketsJob;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
@@ -21,7 +22,8 @@ use Illuminate\Support\Str;
 
 class JiraImport extends Page implements HasForms
 {
-    use InteractsWithForms, JiraHelper;
+    use HasPageShield, InteractsWithForms, JiraHelper;
+
 
     protected static ?string $navigationIcon = 'heroicon-o-cloud-arrow-down';
 
