@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use DutchCodingCompany\FilamentSocialite\Models\SocialiteUser;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -100,10 +101,10 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Ticket::class, 'responsible_id', 'id');
     }
 
-    // public function socials(): HasMany
-    // {
-    //     return $this->hasMany(SocialiteUser::class, 'user_id', 'id');
-    // }
+    public function socials(): HasMany
+    {
+        return $this->hasMany(SocialiteUser::class, 'user_id', 'id');
+    }
 
     public function hours(): HasMany
     {

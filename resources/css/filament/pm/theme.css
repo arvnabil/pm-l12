@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@import "tailwindcss/preflight";
+@import "../../../../vendor/filament/filament/resources/css/base.css";
+@source '../../../../vendor/guava/filament-icon-picker/resources/**/*';
+
+@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
+@source '../../../../resources/views/tables';
+@source '../../../../vendor/awcodes/filament-badgeable-column/resources/**/*.blade.php';
+@config './tailwind.config.js';
