@@ -1,5 +1,5 @@
 import preset from "./vendor/filament/support/tailwind.config.preset";
-
+const colors = require("tailwindcss/colors");
 export default {
     presets: [preset],
     content: [
@@ -7,13 +7,20 @@ export default {
         "./resources/views/**/*.blade.php",
         "./vendor/filament/**/*.blade.php",
     ],
+    darkMode: "class",
     theme: {
         extend: {
             colors: {
-                danger: colors.rose, // Or any other red shade from colors
-                warning: colors.yellow, // Or any other yellow shade from colors
-                // You can also define primary, success, etc. here
+                danger: colors.rose,
+                primary: colors.blue,
+                success: colors.green,
+                warning: colors.yellow,
             },
         },
     },
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/typography"),
+        require("flowbite/plugin"),
+    ],
 };

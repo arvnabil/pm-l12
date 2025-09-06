@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\OidcAuthController;
+use App\Http\Controllers\RoadMap\DataController;
 use App\Models\Ticket;
 use App\Models\User;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,16 +27,9 @@ Route::get('/validate-account/{user:creation_token}', function (User $user) {
     ]);
 
 // Login default redirection
-Route::redirect('/login-redirect', '/login')->name('login');
+Route::redirect('/login-redirect', '/pm/login')->name('login');
 
 // Road map JSON data
-// Route::get('road-map/data/{project}', [DataController::class, 'data'])
-//     ->middleware(['verified', 'auth'])
-//     ->name('road-map.data');
-
-// Route::name('oidc.')
-//     ->prefix('oidc')
-//     ->group(function () {
-//         Route::get('redirect', [OidcAuthController::class, 'redirect'])->name('redirect');
-//         Route::get('callback', [OidcAuthController::class, 'callback'])->name('callback');
-//     });
+Route::get('road-map/data/{project}', [DataController::class, 'data'])
+    ->middleware(['verified', 'auth'])
+    ->name('road-map.data');

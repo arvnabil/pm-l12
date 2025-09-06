@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Role;
 use App\Settings\GeneralSettings;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Actions\Action;
@@ -77,14 +78,6 @@ class ManageGeneralSettings extends SettingsPage
                                         ->label(__('Enable social login?'))
                                         ->helperText(__('If enabled, configured users can login via their social accounts.')),
 
-                                    Toggle::make('enable_login_form')
-                                        ->label(__('Enable form login?'))
-                                        ->helperText(__('If enabled, a login form will be visible on the login page.')),
-
-                                    Toggle::make('enable_oidc_login')
-                                        ->label(__('Enable OIDC login?'))
-                                        ->helperText(__('If enabled, an OIDC Connect button will be visible on the login page.')),
-
                                     Select::make('site_language')
                                         ->label(__('Site language'))
                                         ->helperText(__('The language used by the platform.'))
@@ -93,10 +86,9 @@ class ManageGeneralSettings extends SettingsPage
 
                                     Select::make('default_role')
                                         ->label(__('Default role'))
+                                        ->options(Role::all()->pluck('name', 'id')->toArray())
                                         ->helperText(__('The platform default role (used mainly in OIDC Connect).'))
                                         ->searchable()
-                                        ->relationship('roles', 'name')
-                                        // ->options(Role::all()->pluck('name', 'id')->toArray()),
                                 ]),
                         ]),
                 ]),

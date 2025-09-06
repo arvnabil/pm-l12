@@ -13,6 +13,7 @@
         "ext-iconv": "*",
         "bezhansalleh/filament-shield": "^3.3",
         "doctrine/dbal": "^4.3",
+        "driesvints/blade-icons": "^1.8",
         "dutchcodingcompany/filament-socialite": "^2.4",
         "filament/filament": "^3.3",
         "filament/notifications": "^3.3",
