@@ -31,3 +31,10 @@ Route::redirect('/login-redirect', '/login')->name('login');
 // Route::get('road-map/data/{project}', [DataController::class, 'data'])
 //     ->middleware(['verified', 'auth'])
 //     ->name('road-map.data');
+
+// Route::name('oidc.')
+//     ->prefix('oidc')
+//     ->group(function () {
+//         Route::get('redirect', [OidcAuthController::class, 'redirect'])->name('redirect');
+//         Route::get('callback', [OidcAuthController::class, 'callback'])->name('callback');
+//     });

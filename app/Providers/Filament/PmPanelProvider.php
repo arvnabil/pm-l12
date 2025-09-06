@@ -35,7 +35,12 @@ class PmPanelProvider extends PanelProvider
             ->path('pm')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Rose, // Replaces the default red with a rose color
+                'gray' => Color::Zinc,
+                'info' => Color::Blue,
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
+                'warning' => Color::Yellow,
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s')
